@@ -9,6 +9,8 @@ import {AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo} from '@ang
 import {CreateUserComponent} from './create-user/create-user.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { TableComponent } from './shared/table/table.component';
+import { DashboardComponent } from './shared/dashboard/dashboard.component';
+import { CardsGridComponent } from './shared/cards-grid/cards-grid.component';
 
 const routes: Routes = [
   {
@@ -42,7 +44,9 @@ const routes: Routes = [
 
   // Shared
   { path: 'navigation', component: NavigationComponent},
-  { path: 'table', component: TableComponent}
+  { path: 'table', component: TableComponent},
+  { path: 'dashboard', component: DashboardComponent},
+  { path: 'cards-grid', component: CardsGridComponent}
 ];
 
 @NgModule({

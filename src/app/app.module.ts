@@ -42,6 +42,13 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {HomeComponent} from './shared/home/home.component';
 import { NavigationComponent } from './shared/navigation/navigation.component';
 import { TableComponent } from './shared/table/table.component';
+import { DashboardComponent } from './shared/dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { LayoutModule } from '@angular/cdk/layout';
+import { CardsComponent } from './shared/cards/cards.component';
+import { EditStudentComponent } from './shared/edit-student/edit-student.component';
+import { CardsGridComponent } from './shared/cards-grid/cards-grid.component';
+import { CdkTableModule } from '@angular/cdk/table';
 
 
 @NgModule({
@@ -57,7 +64,11 @@ import { TableComponent } from './shared/table/table.component';
     // Shared
     HomeComponent,
     NavigationComponent,
-    TableComponent
+    TableComponent,
+    DashboardComponent,
+    CardsComponent,
+    EditStudentComponent,
+    CardsGridComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +84,7 @@ import { TableComponent } from './shared/table/table.component';
     MatToolbarModule,
     MatInputModule,
     MatTableModule,
+    CdkTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatProgressSpinnerModule,
@@ -88,7 +100,9 @@ import { TableComponent } from './shared/table/table.component';
     AngularFirestoreModule,
     AngularFireStorageModule,
     AngularFireAuthModule,
-    AngularFireFunctionsModule
+    AngularFireFunctionsModule,
+    MatGridListModule,
+    LayoutModule
   ],
   providers: [
   // { provide: USE_AUTH_EMULATOR, useValue: environment.useEmulators ? ['localhost', 9099] : undefined },

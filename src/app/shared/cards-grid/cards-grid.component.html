@@ -1,0 +1,31 @@
+<div class="home-div">
+
+    <mat-tab-group  mat-align-tabs="center">
+
+        <mat-tab label="Students">
+
+            <app-cards [users]="students$ | async"
+            (studentEdited)="loadStudents()"
+            (studentDeleted)="loadStudents()">
+            </app-cards>
+
+        </mat-tab>
+
+        <mat-tab label="Staff">
+
+            <app-cards [users]="staff$ | async">
+            </app-cards>
+
+        </mat-tab>
+
+        <mat-tab label="Admins">
+
+            <app-cards [users]="admins$ | async">
+            </app-cards>
+
+        </mat-tab>
+
+    </mat-tab-group>
+
+</div>
+

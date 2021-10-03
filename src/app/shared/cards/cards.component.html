@@ -1,0 +1,28 @@
+<mat-card *ngFor="let user of users" class="card mat-elevation-z2">
+
+    <div class="in-card">
+
+        <div>
+            <mat-card-title>{{user.first_name +" "+ user.last_name}}</mat-card-title>
+            <mat-card-subtitle>ID: {{user.id}}</mat-card-subtitle>
+        </div>
+
+        <mat-card-content>
+            <p>Email: {{user.email}}</p>
+            <p>Date of Birth: {{user.dateOfBirth}}</p>
+        </mat-card-content>
+
+    </div>
+
+
+    <mat-card-actions align="end">
+        <button mat-button class="mat-raised-button mat-primary" [routerLink]="['/student', user.url]">
+            View
+          </button>
+        <button mat-raised-button color="primary" (click)="editStudent(user)">Edit</button>
+        <button mat-mini-fab color="warn" (click)="deleteStudent(user)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+
+</mat-card>
