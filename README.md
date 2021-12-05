@@ -1,139 +1,67 @@
 
-## Firebase & AngularFire In Depth 
+PLEASE NOTE: This is of a student project assessment
 
-This repository currently contains the code for the [Firebase & AngularFire In Depth](https://angular-university.io/course/angularfire-course):
+# Manukau Institute of Technology International Application
 
-![Firebase & AngularFire In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/firebase-course-1.jpg)
+This repository contains the code for the student industry project created by Mario Aguirre Lopez (150000053) for the Manukau Institute of Technology in Auckland, New Zealand.
 
-You can find the starting point of the course in the [1-start branch](https://github.com/angular-university/firebase-course/tree/1-start).
+## Pre-requisites
 
-# Installation pre-requisites
+Get and install NodeJS and an IDE of your choice.
 
-IMPORTANT: Please use Node 14 LST (Long Term Support version).
+IMPORTANT: Please use Node 14 LST (Long Term Support version). The current version is noit recomemded as it doesn't work as well with the Angular CLI, Angular Fire and other tools.
 
-# Installing the Angular CLI
+## Installing the Angular CLI
 
 With the following command the angular-cli will be installed globally in your machine:
 
     npm install -g @angular/cli 
 
-# How To install this repository
+## How To install this repository
 
-We can install the master branch using the following commands:
+Install the master branch using the following commands:
 
-    git clone https://github.com/angular-university/firebase-course.git
+    git clone https://github.com/marioftw/MIT-InternationalApp.v2
 
-    cd firebase-course
+    cd MIT-InternationalApp.v2
+
     npm ci
 
-Note: We recommend using npm ci, instead of npm install. This will ensure that you use the exact dependency versions set on package-lock.json, unlike npm install which might potentially change those versions.
+Note: It's recommended to run npm ci, instead of npm install. This will ensure that the exact dependency versions set on package-lock.json are used, unlike npm install which might potentially change those versions.
 
-# To run the Development UI Server
+## Run the Development UI Server
 
-To run the frontend part of our code, we will use the Angular CLI:
+To run the frontend part of the code use the Angular CLI:
 
     npm start 
 
 The application is visible at port 4200: [http://localhost:4200](http://localhost:4200)
 
-# Other Courses
+## Installing Firebase
 
-# Angular Forms In Depth
+If not installed already, run the follwing command to install Firebase (this will initialize a Firebase project within the especified directory):
 
-If you are looking for the [Angular Forms In Depth](https://angular-university.io/course/angular-forms-course) course, the repo with the full code can be found here:
+    firebase init
 
-![Angular Forms In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-forms-course-small.jpg)
+When asked about Firebase CLI features to install select the following: Firestore, Functions, Hosting, Storage, Emulators(only install if you plan to use it for further developemnt).
 
-# Angular Router In Depth
+When prompted select existing project: MITInternationalApp.
 
-If you are looking for the [Angular Router In Depth](https://angular-university.io/course/angular-router-course) course, the repo with the full code can be found here:
+When prompted to replace already existing files select No (otherwise firebase files within the project will be replace with empty ones).
 
-![Angular Router In Depth](https://angular-university.s3-us-west-1.amazonaws.com/course-images/angular-router-course.jpg)
+## Deploying the site
 
-# NgRx (with NgRx Data) - The Complete Guide
+On the console wirte the following command to build the production enviroment (Make sure to always do this before deploying):
 
-If you are looking for the [Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.io/course/ngrx-course), the repo with the full code can be found here:
+    ng build --configuration production
 
-![Ngrx (with NgRx Data) - The Complete Guide](https://angular-university.s3-us-west-1.amazonaws.com/course-images/ngrx-v2.png)
+If you have updated the Functions folder, always run the following command within the folder directory before deploying :
 
+    npm run build
 
-# Angular Core Deep Dive Course
+To deploy the site to Firebase run:
 
-If you are looking for the [Angular Core Deep Dive Course](https://angular-university.io/course/angular-course), the repo with the full code can be found here:
-
-![Angular Core Deep Dive](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-core-in-depth-small.png)
-
-# RxJs In Practice
-
-If you are looking for the [RxJs In Practice](https://angular-university.io/course/rxjs-course), the repo with the full code can be found here:
-
-![RxJs In Practice Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/rxjs-in-practice-course.png)
-
-# NestJs In Practice (with MongoDB)
-
-If you are looking for the [NestJs In Practice Course](https://angular-university.io/course/nestjs-course), the repo with the full code can be found here:
-
-![NestJs In Practice Course](https://angular-university.s3-us-west-1.amazonaws.com/course-images/nestjs-v2.png)
-
-# Angular Testing Course
-
-If you are looking for the [Angular Testing Course](https://angular-university.io/course/angular-testing-course), the repo with the full code can be found here:
-
-![Angular Testing Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-testing-small.png)
-
-# Serverless Angular with Firebase Course
-
-If you are looking for the [Serverless Angular with Firebase Course](https://angular-university.io/course/firebase-course), the repo with the full code can be found here:
-
-![Serverless Angular with Firebase Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/serverless-angular-small.png)
-
-# Angular Universal Course
-
-If you are looking for the [Angular Universal Course](https://angular-university.io/course/angular-universal-course), the repo with the full code can be found here:
-
-![Angular Universal Course](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-universal-small.png)
-
-# Angular PWA Course
-
-If you are looking for the [Angular PWA Course](https://angular-university.io/course/angular-pwa-course), the repo with the full code can be found here:
-
-![Angular PWA Course - Build the future of the Web Today](https://s3-us-west-1.amazonaws.com/angular-university/course-images/angular-pwa-course.png)
-
-# Angular Security Masterclass
-
-If you are looking for the [Angular Security Masterclass](https://angular-university.io/course/angular-security-course), the repo with the full code can be found here:
-
-[Angular Security Masterclass](https://github.com/angular-university/angular-security-course).
-
-![Angular Security Masterclass](https://s3-us-west-1.amazonaws.com/angular-university/course-images/security-cover-small-v2.png)
-
-# Angular Advanced Library Laboratory Course
-
-If you are looking for the Angular Advanced Course, the repo with the full code can be found here:
-
-[Angular Advanced Library Laboratory Course: Build Your Own Library](https://angular-university.io/course/angular-advanced-course).
-
-![Angular Advanced Library Laboratory Course: Build Your Own Library](https://angular-academy.s3.amazonaws.com/thumbnails/advanced_angular-small-v3.png)
-
-
-## RxJs and Reactive Patterns Angular Architecture Course
-
-If you are looking for the RxJs and Reactive Patterns Angular Architecture Course code, the repo with the full code can be found here:
-
-[RxJs and Reactive Patterns Angular Architecture Course](https://angular-university.io/course/reactive-angular-architecture-course)
-
-![RxJs and Reactive Patterns Angular Architecture Course](https://s3-us-west-1.amazonaws.com/angular-academy/blog/images/rxjs-reactive-patterns-small.png)
-
-
-## Complete Typescript Course - Build A REST API
-
-If you are looking for the Complete Typescript 2 Course - Build a REST API, the repo with the full code can be found here:
-
-[https://angular-university.io/course/typescript-2-tutorial](https://github.com/angular-university/complete-typescript-course)
-
-[Github repo for this course](https://github.com/angular-university/complete-typescript-course)
-
-![Complete Typescript Course](https://angular-academy.s3.amazonaws.com/thumbnails/typescript-2-small.png)
+    firebase deploy
 
 
 

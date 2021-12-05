@@ -1,0 +1,153 @@
+<mat-sidenav-container class="sidenav-container">
+  
+  
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false"
+      position="end">
+
+    <mat-toolbar>
+      <img src="https://www.manukau.ac.nz/__data/assets/image/0011/166709/MIT-logo-landscape-white.png" 
+      alt="MIT Logo" class="center" routerLink="dashboard" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+      <img src="https://www.manukau.ac.nz/__data/assets/image/0011/166709/MIT-logo-landscape-white.png" 
+      alt="MIT Logo" class="center" routerLink="" *ngIf="user.isLoggedOut$ | async" (click)="drawer.toggle()">
+    </mat-toolbar>
+
+    <mat-nav-list>
+
+      <!--                          STAFF                      -->
+      <!--------------------------------------------------------->
+
+      <p class="sidenav-heading" *ngIf="user.isLoggedIn$ | async">STAFF</p>
+      
+      <!--  Home  -->
+      <a mat-list-item routerLink="" *ngIf="user.isLoggedOut$ | async" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>home</mat-icon>
+          Home
+        </button>
+      </a>
+
+      <!--  Dashboard  -->
+      <a mat-list-item routerLink="dashboard" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </button>
+      </a>
+
+      <!--  Card Grid  -->
+      <a mat-list-item routerLink="cards-grid" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>grid_view</mat-icon>
+          Users
+        </button>
+        
+      </a>
+
+      <!--  Search Table -->
+      <a mat-list-item routerLink="table" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <mat-icon>search</mat-icon>
+        Search
+      </a>
+
+      <!--  New User  -->
+      <a mat-list-item routerLink="create-user" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <mat-icon>add</mat-icon>
+        New User
+      </a>
+
+      <!--  Edit User  -->
+      <a mat-list-item routerLink="edit-student" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <mat-icon>edit</mat-icon>
+        Edit Student
+      </a>
+
+      <!--                        STUDENTS                     -->
+      <!--------------------------------------------------------->
+      <mat-divider *ngIf="user.isLoggedIn$ | async"></mat-divider>
+
+      <p class="sidenav-heading" *ngIf="user.isLoggedIn$ | async">STUDENTS</p>
+
+      <!--  Student Dashboard  -->
+      <a mat-list-item routerLink="student-dashboard" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>dashboard</mat-icon>
+          Dashboard
+        </button>
+      </a>
+
+      <!--  Registration Form  -->
+      <a mat-list-item routerLink="registration-form" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>description</mat-icon>
+          Registration Form
+        </button>
+      </a>
+
+      <!--                         GENERAL                     -->
+      <!--------------------------------------------------------->
+      <mat-divider *ngIf="user.isLoggedIn$ | async"></mat-divider>
+
+      <!--  About  -->
+      <a mat-list-item routerLink="about" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>error_outline</mat-icon>
+          About
+        </button>
+      </a>
+
+      <!--  Policy  -->
+      <a mat-list-item routerLink="site-policies" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>policy</mat-icon>
+          Site Policy
+        </button>
+      </a>
+      
+      <!--  Logout  -->      
+      <a mat-list-item *ngIf="user.isLoggedIn$ | async" (click)="logout()" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>exit_to_app</mat-icon>
+          Logout
+        </button>
+      </a>
+
+      <!--                        MESSAGES                     -->
+      <!--------------------------------------------------------->
+      <!-- <mat-divider *ngIf="user.isLoggedIn$ | async"></mat-divider>
+
+
+      <a mat-list-item *ngIf="user.isLoggedIn$ | async">
+        <ng-container as loggedInUserEmail>
+          <span>You are logged in as: {{ loggedInUserEmail }}</span>
+        </ng-container>
+        
+      </a> -->
+      
+      
+    </mat-nav-list>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <mat-toolbar>
+      <span class="toolbar-title">MIT International Hub</span>
+      <span class="toolbar-spacer"></span>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()">
+        <mat-icon aria-label="Side nav toggle icon" style="margin-right: 0;">menu</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

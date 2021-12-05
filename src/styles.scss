@@ -1,7 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; background-color: #303030;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+#noscript-home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10%;
+    color: white;
+}
+#logo {
+    text-align: center;
+  }
+.h1 {
+    text-align: center;
+    font-size: 60px;
+    padding: 5px;
+    padding-top: 50px;
+}
+.h2 {
+    font-size: 35px;
+    text-align: center;
+    margin: 1em;
+    font-family: monospace;
+    width: auto
+}
 
 @import "~firebaseui/dist/firebaseui.css";
+

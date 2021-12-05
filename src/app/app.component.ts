@@ -4,7 +4,7 @@ import {from, Observable} from 'rxjs';
 import {concatMap, filter, map} from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-import { AuthService } from './core/services/auth.service';
+import { AuthTokenService } from './core/services/auth-token.service';
 
 @Component({
   selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
 
   title = 'InternationalApp';
 
-  constructor() {
+  constructor(private token: AuthTokenService) {
 
   }
 

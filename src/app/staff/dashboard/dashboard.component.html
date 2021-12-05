@@ -1,0 +1,41 @@
+<div id="dashboard">
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-card class="mat-elevation-z5">
+    <mat-card-header>
+      <mat-card-title>
+        New Students
+      </mat-card-title>
+    </mat-card-header>
+    <div class="table-card-content-div" >
+      <table mat-table aria-label="Table of students who joint recently" [dataSource]="recentlyJoinedUser$">
+
+        <!-- ID Column -->
+        <ng-container matColumnDef="ID">
+          <th class="id-column" mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="Name">
+          <th class="name-column" mat-header-cell *matHeaderCellDef>  Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}}</td>
+        </ng-container>
+
+        <!-- Email Column -->
+        <ng-container matColumnDef="Email">
+          <th class="email-column" mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.home_email}} </td>
+        </ng-container>
+
+        <!-- Created On Column -->
+        <ng-container matColumnDef="Joined On">
+          <th class="joined-on-column" mat-header-cell *matHeaderCellDef> Joined On </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdOn.toDate() | date: 'dd MMM yyyy hh:mm'}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns, sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+  </mat-card>
+</div>

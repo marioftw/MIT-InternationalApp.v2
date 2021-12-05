@@ -8,8 +8,8 @@
         </div>
 
         <mat-card-content>
-            <p>Email: {{user.email}}</p>
-            <p>Date of Birth: {{user.dateOfBirth}}</p>
+            <p>Email: {{user.home_email}}</p>
+            <p>Date of Birth: {{user.dateOfBirth.toDate() | date: 'dd MMM yyyy'}}</p>
         </mat-card-content>
 
     </div>

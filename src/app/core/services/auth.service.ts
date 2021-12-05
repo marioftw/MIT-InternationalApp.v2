@@ -14,13 +14,19 @@ export class AuthService {
 
     isLoggedOut$: Observable<boolean>;
 
+    loggedInUserEmail$ : Observable<string>;
+
     constructor(
+        // MAL: using Angular Fire Auth Service to gain access to JSON token containig user information
         private afAuth: AngularFireAuth,
         private router: Router) {
 
+        // MAL: cheks if the object user is present in the authentication observable
         this.isLoggedIn$ = afAuth.authState.pipe(map(user => !!user));
 
         this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
+
+        this.loggedInUserEmail$ = afAuth.authState.pipe(map(user => user? user.email : null))
 
     }
 

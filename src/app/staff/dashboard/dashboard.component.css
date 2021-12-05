@@ -1,0 +1,37 @@
+#dashboard {
+  margin: 40px;
+}
+
+.mat-h1 {
+  margin-bottom: 40px;
+}
+
+.table-card-content-div {
+  overflow: auto; 
+  height: 300px;
+}
+
+table {
+  width: 100%;
+}
+
+.id-column {
+  min-width: 110px;
+}
+
+.name-column {
+  min-width: 150px;
+}
+
+.email-column {
+  min-width: 200px;
+}
+
+.joined-on-column {
+  min-width: 110px;
+  max-width: 150px;
+}
+
+.mat-card-title {
+  margin-top: 16px;
+}

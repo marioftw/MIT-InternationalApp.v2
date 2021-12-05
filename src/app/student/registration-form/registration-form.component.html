@@ -1,0 +1,877 @@
+<div id="registration-form">
+  <h1 class="mat-h1">Registration Form</h1>
+  <h3>This form is to be completed only by new applicants who are International Students.</h3>
+  <h3>Manukau Institute of Technology is a state-funded tertiary provider, and as such we are required to provide statitical information to the Ministry of Education.</h3>
+  <h3>All section of this form must be completed and all the necessary documentation provided, to enable your enrolment to be fully processed.</h3>
+
+  <mat-vertical-stepper class="mat-elevation-z5" linear="true" >
+    
+    <!------------------ Student Details ---------------->
+    <mat-step [stepControl]="firstFormGroup" completed="true" 
+    aria-label="Student details tab" 
+    errorMessage="Complete all required fields in this section before submitting this form.">
+      <ng-template matStepLabel>Student Details</ng-template>
+      <div [formGroup]="firstFormGroup">
+
+        <mat-label>MIT Student ID Number (if known):</mat-label>
+
+        <div class="fields-grid">
+          <!------------------ Student ID Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Student ID</mat-label>
+            <input matInput #ID type="text" (keypress)="keyPressNumbers($event)" 
+            formControlName="id" placeholder="Ex. 123456789">
+            <mat-hint align="end">{{ID.value.length}} / 9</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <mat-label>Please enter your legal name in full as on your passport.</mat-label>
+
+        <div class="fields-grid">
+          <!------------------ Family Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Family Name</mat-label>
+            <input matInput placeholder="E.g. Smith" formControlName="last_name" type="text" (keypress)="keyPressText($event)" required>
+          </mat-form-field>
+          <!------------------ First Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput placeholder="E.g. John" formControlName="first_name" type="text" (keypress)="keyPressText($event)"  required>
+          </mat-form-field>
+          <!------------------ Second Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Second Name</mat-label>
+            <input matInput placeholder="E.g. William" formControlName="second_name" type="text" (keypress)="keyPressText($event)" >
+          </mat-form-field>
+        </div>
+
+        <mat-label>If you are not commonly called by your legal name(s), what do you prefer to be called?.</mat-label>
+
+        <div class="fields-grid">
+          <!------------------ Prefered Last Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Prefered Last Name</mat-label>
+            <input matInput placeholder="E.g. Smith" formControlName="prefered_family_name" type="text" (keypress)="keyPressText($event)" >
+          </mat-form-field>
+          <!------------------ Prefered Given Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Prefered Given Name</mat-label>
+            <input matInput placeholder="E.g. John" formControlName="prefered_first_name" type="text" (keypress)="keyPressText($event)" >
+          </mat-form-field>   
+        </div>
+
+        <mat-label>Do you have a prefered title?</mat-label>
+
+        <div class="fields-grid">
+          <!------------------ Title Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Prefered Title</mat-label>
+            <mat-select placeholder="Select a title" formControlName="title" required>
+              <mat-option value="miss">Miss</mat-option>
+              <mat-option value="mrs">Mrs</mat-option>
+              <mat-option value="ms">Ms</mat-option>
+              <mat-option value="mr">Mr</mat-option>
+              <mat-option value="dr">Dr</mat-option>
+              <mat-option value="other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!------------------ Gender Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select placeholder="Select a gender" formControlName="gender" required>
+              <mat-option value="male">Male</mat-option>
+              <mat-option value="female">Female</mat-option>
+            </mat-select>
+          </mat-form-field>  
+          <!------------------ Date of Birth Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Date of Birth</mat-label>
+            <input matInput [min]="minDate" [max]="maxDate" [matDatepicker]="picker" 
+            formControlName="dateOfBirth" 
+            (keypress)="false" 
+            required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <mat-label>Do you have medical and travel insurance?</mat-label>
+
+        <div class="fields-grid">
+          <!------------------ Insurance Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Have insurance?</mat-label>
+            <mat-select placeholder="Select an option" formControlName="insurance" required>
+              <mat-option value="yes">Yes</mat-option>
+              <mat-option value="no">No</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-label>If you answered YES above, fill in the Insurance Company name and provide a copy of the Insurance Policy.</mat-label>   
+        
+        <div class="fields-grid">
+          <!------------------ Insurance Company Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Company Name</mat-label>
+            <input matInput placeholder="E.g. Unicare" formControlName="insurance_company">
+          </mat-form-field>
+          <!------------------ Insurance Police File Field ---------------->
+          <input type="file" 
+          class="file-upload" 
+          (change)="uploadInsuranceFile($event)"
+          formControlName="insurance_policy_file">
+        </div>
+
+        <mat-label>If you know your National Student Index Number or NZQA number, please enter it below. </mat-label>
+        <mat-label>This system, introduced by the Goverment, allocates every New Zealand tertiary student and NCEA candidate a unique number - NSN.</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ NZQA number Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>NSW / NZQA Number</mat-label>
+            <input matInput #NZQA placeholder="E.g. 0123456789" formControlName="nzqa_number" type="text" (keypress)="keyPressNumbers($event)">
+            <mat-hint align="end">{{NZQA.value.length}} / 10</mat-hint>
+          </mat-form-field>
+        </div>
+
+        <mat-label>What is your Country of Citizenship? Please attach a copy of your passport.</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ Citizenship Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Country of Citizenship</mat-label>
+            <input matInput placeholder="E.g. Mexico" formControlName="citizenship" type="text" (keypress)="keyPressText($event)" required>
+          </mat-form-field>
+          <!------------------ Passport File Field ---------------->
+          <input type="file" 
+          class="file-upload" 
+          (change)="uploadPassportFile($event)"
+          formControlName="passport_file">
+        </div>
+
+        <mat-label>What Ethnic Group you most identify with? If you identify yourself with additional ethnic groups you may select two other.</mat-label>   
+        
+        <div class="fields-grid">
+          <!------------------ Ethnic Group 1 Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Ethnic Group</mat-label>
+            <mat-select placeholder="Select an option" formControlName="ethnic_group_1" required>
+              <mat-option value="New Zealand European/Pakeha">New Zealand European/Pakeha</mat-option>
+              <mat-option value="New Zealand Māori">New Zealand Māori</mat-option>
+              <mat-option value="Samoan">Samoan</mat-option>
+              <mat-option value="Cook Island Māori<">Cook Island Māori</mat-option>
+              <mat-option value="Tongan">Tongan</mat-option>
+              <mat-option value="Niuean">Niuean</mat-option>
+              <mat-option value="Tokelauen">Tokelauen</mat-option>
+              <mat-option value="Fijian">Fijian</mat-option>
+              <mat-option value="Other Pacific Peoples">Other Pacific Peoples</mat-option>
+              <mat-option value="British/Irish">British/Irish</mat-option>
+              <mat-option value="Dutch">Dutch</mat-option>
+              <mat-option value="Greek">Greek</mat-option>
+              <mat-option value="Polish">Polish</mat-option>
+              <mat-option value="South Slav">South Slav</mat-option>
+              <mat-option value="Italian">Italian</mat-option>
+              <mat-option value="German">German</mat-option>
+              <mat-option value="Australian">Australian</mat-option>
+              <mat-option value="Other European">Other European</mat-option>
+              <mat-option value="Filipino">Filipino</mat-option>
+              <mat-option value="Cambodian">Cambodian</mat-option>
+              <mat-option value="Vietnamese">Vietnamese</mat-option>
+              <mat-option value="Other Southeast Asian">Other Southeast Asian</mat-option>
+              <mat-option value="Chinese">Chinese</mat-option>
+              <mat-option value="Indian">Indian</mat-option>
+              <mat-option value="Sri Lankan">Sri Lankan</mat-option>
+              <mat-option value="Japanese">Japanese</mat-option>
+              <mat-option value="Korean">Korean</mat-option>
+              <mat-option value="Other Asian">Other Asian</mat-option>
+              <mat-option value="Middle Eastern">Middle Eastern</mat-option>
+              <mat-option value="Latin American">Latin American</mat-option>
+              <mat-option value="African">African</mat-option>
+              <mat-option value="Other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!------------------ Ethnic Group 2 Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Ethnic Group 2 (Optional)</mat-label>
+            <mat-select placeholder="Select an option" formControlName="ethnic_group_2">
+              <mat-option value="New Zealand European/Pakeha">New Zealand European/Pakeha</mat-option>
+              <mat-option value="New Zealand Māori">New Zealand Māori</mat-option>
+              <mat-option value="Samoan">Samoan</mat-option>
+              <mat-option value="Cook Island Māori<">Cook Island Māori</mat-option>
+              <mat-option value="Tongan">Tongan</mat-option>
+              <mat-option value="Niuean">Niuean</mat-option>
+              <mat-option value="Tokelauen">Tokelauen</mat-option>
+              <mat-option value="Fijian">Fijian</mat-option>
+              <mat-option value="Other Pacific Peoples">Other Pacific Peoples</mat-option>
+              <mat-option value="British/Irish">British/Irish</mat-option>
+              <mat-option value="Dutch">Dutch</mat-option>
+              <mat-option value="Greek">Greek</mat-option>
+              <mat-option value="Polish">Polish</mat-option>
+              <mat-option value="South Slav">South Slav</mat-option>
+              <mat-option value="Italian">Italian</mat-option>
+              <mat-option value="German">German</mat-option>
+              <mat-option value="Australian">Australian</mat-option>
+              <mat-option value="Other European">Other European</mat-option>
+              <mat-option value="Filipino">Filipino</mat-option>
+              <mat-option value="Cambodian">Cambodian</mat-option>
+              <mat-option value="Vietnamese">Vietnamese</mat-option>
+              <mat-option value="Other Southeast Asian">Other Southeast Asian</mat-option>
+              <mat-option value="Chinese">Chinese</mat-option>
+              <mat-option value="Indian">Indian</mat-option>
+              <mat-option value="Sri Lankan">Sri Lankan</mat-option>
+              <mat-option value="Japanese">Japanese</mat-option>
+              <mat-option value="Korean">Korean</mat-option>
+              <mat-option value="Other Asian">Other Asian</mat-option>
+              <mat-option value="Middle Eastern">Middle Eastern</mat-option>
+              <mat-option value="Latin American">Latin American</mat-option>
+              <mat-option value="African">African</mat-option>
+              <mat-option value="Other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!------------------ Ethnic group 3 Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Ethnic Group 3 (Optional)</mat-label>
+            <mat-select placeholder="Select an option" formControlName="ethnic_group_3">
+              <mat-option value="New Zealand European/Pakeha">New Zealand European/Pakeha</mat-option>
+              <mat-option value="New Zealand Māori">New Zealand Māori</mat-option>
+              <mat-option value="Samoan">Samoan</mat-option>
+              <mat-option value="Cook Island Māori<">Cook Island Māori</mat-option>
+              <mat-option value="Tongan">Tongan</mat-option>
+              <mat-option value="Niuean">Niuean</mat-option>
+              <mat-option value="Tokelauen">Tokelauen</mat-option>
+              <mat-option value="Fijian">Fijian</mat-option>
+              <mat-option value="Other Pacific Peoples">Other Pacific Peoples</mat-option>
+              <mat-option value="British/Irish">British/Irish</mat-option>
+              <mat-option value="Dutch">Dutch</mat-option>
+              <mat-option value="Greek">Greek</mat-option>
+              <mat-option value="Polish">Polish</mat-option>
+              <mat-option value="South Slav">South Slav</mat-option>
+              <mat-option value="Italian">Italian</mat-option>
+              <mat-option value="German">German</mat-option>
+              <mat-option value="Australian">Australian</mat-option>
+              <mat-option value="Other European">Other European</mat-option>
+              <mat-option value="Filipino">Filipino</mat-option>
+              <mat-option value="Cambodian">Cambodian</mat-option>
+              <mat-option value="Vietnamese">Vietnamese</mat-option>
+              <mat-option value="Other Southeast Asian">Other Southeast Asian</mat-option>
+              <mat-option value="Chinese">Chinese</mat-option>
+              <mat-option value="Indian">Indian</mat-option>
+              <mat-option value="Sri Lankan">Sri Lankan</mat-option>
+              <mat-option value="Japanese">Japanese</mat-option>
+              <mat-option value="Korean">Korean</mat-option>
+              <mat-option value="Other Asian">Other Asian</mat-option>
+              <mat-option value="Middle Eastern">Middle Eastern</mat-option>
+              <mat-option value="Latin American">Latin American</mat-option>
+              <mat-option value="African">African</mat-option>
+              <mat-option value="Other">Other</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <mat-label>Please provide a copy of your valid visa issued by Immigration New Zealand if you have been granted one. </mat-label><br /><br />
+        
+        <div class="fields-grid">
+          <!------------------ Visa file Field ---------------->
+          <input type="file" 
+          class="file-upload" 
+          (change)="uploadVisaFile($event)"
+          formControlName="visa_file">
+        </div>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <!------------------ Contact Details ---------------->
+    <mat-step [stepControl]="secondFormGroup" completed="true" 
+    aria-label="Contact details tab" 
+    errorMessage="Complete all required fields in this section before submitting this form.">
+      <ng-template matStepLabel>Contact Details</ng-template>
+      <div [formGroup]="secondFormGroup">
+
+        <mat-label>Permanent/home country address:</mat-label>
+
+        <div class="fields-grid">
+          <!------------------ Home Address Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="E.g. 123 Sesame Street" formControlName="home_address" required>
+          </mat-form-field>
+          <!------------------ Home Town/city Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Town/city</mat-label>
+            <input matInput placeholder="E.g. New York" formControlName="home_city" type="text" required>
+          </mat-form-field>
+          <!------------------ Home Country Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <input matInput placeholder="E.g. United States" formControlName="home_country" type="text"  required>
+          </mat-form-field>
+          <!------------------ Home Phone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" formControlName="home_phone" type="text" (keypress)="keyPressNumbers($event)" required>
+            <span matPrefix>+&nbsp;</span>
+          </mat-form-field>
+          <!------------------ Home Cellphone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Cellphone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" formControlName="home_cellphone" type="text" (keypress)="keyPressNumbers($event)">
+            <span matPrefix>+&nbsp;</span>
+          </mat-form-field>
+          <!------------------ Home Email Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput formControlName="home_email" placeholder="Ex. email@example.com" required>
+            <mat-error *ngIf="secondFormGroup.controls['home_email'].hasError('email') 
+            && !secondFormGroup.controls['home_email'].hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="secondFormGroup.controls['home_email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-label>Work/business/postal address:</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ Company Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Company Name</mat-label>
+            <input matInput placeholder="E.g. Apple" 
+            formControlName="work_company_name" 
+            type="text" >
+          </mat-form-field>
+          <!------------------ Work Address Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Address</mat-label>
+            <input matInput placeholder="E.g. 123 Sesame Street" 
+            formControlName="work_address">
+          </mat-form-field>
+          <!------------------ Work City Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Town/city</mat-label>
+            <input matInput placeholder="E.g. New York" 
+            formControlName="work_city" 
+            type="text" 
+            (keypress)="keyPressText($event)">
+          </mat-form-field>
+          <!------------------ Work Country Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Country</mat-label>
+            <input matInput placeholder="E.g. United States" 
+            formControlName="work_country" 
+            type="text" 
+            (keypress)="keyPressText($event)">
+          </mat-form-field>
+          <!------------------ Work Phone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="work_phone" 
+            type="text" 
+            (keypress)="keyPressNumbers($event)">
+            <span matPrefix>+&nbsp;</span>
+          </mat-form-field>
+          <!------------------ Work Cellphone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Cellphone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="work_cellphone" 
+            type="text" 
+            (keypress)="keyPressNumbers($event)">
+            <span matPrefix>+&nbsp;</span>
+          </mat-form-field>
+          <!------------------ Work Email Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Ex. email@example.com"
+            formControlName="work_email"
+            type="email">
+            <mat-error *ngIf="secondFormGroup.controls['work_email'].hasError('email') 
+            && !secondFormGroup.controls['work_email'].hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="secondFormGroup.controls['work_email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-label>Address while studying in New Zealand:</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ NZ Apartment Number Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Unit/Flat/Apartment Number</mat-label>
+            <input matInput placeholder="E.g. 52"
+            formControlName="nz_apartment_number">
+          </mat-form-field>
+          <!------------------ NZ Street Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Street Number and Name</mat-label>
+            <input matInput placeholder="E.g. 123 Sesame Street"
+            formControlName="nz_street"
+            required>
+          </mat-form-field>
+          <!------------------ NZ Suburb Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Suburb</mat-label>
+            <input matInput placeholder="E.g. Otara" 
+            formControlName="nz_suburb" 
+            type="text"
+            (keypress)="keyPressText($event)"
+            required>
+          </mat-form-field>
+          <!------------------ NZ City Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Town/city</mat-label>
+            <input matInput placeholder="E.g. Auckland" 
+            formControlName="nz_city"
+            type="text"
+            (keypress)="keyPressText($event)"
+            required>
+          </mat-form-field>
+          <!------------------ NZ Postcode Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Postcode</mat-label>
+            <input matInput placeholder="E.g. 2052" 
+            formControlName="nz_postcode" 
+            type="text"
+            (keypress)="keyPressNumbers($event)"
+            required>
+          </mat-form-field>
+          <!------------------ NZ Phone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="nz_phone"
+            type="text"
+            (keypress)="keyPressNumbers($event)"
+            required>
+          </mat-form-field>
+          <!------------------ NZ Cellphone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Cellphone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="nz_cellphone"
+            type="text"
+            (keypress)="keyPressNumbers($event)">
+          </mat-form-field>
+          <!------------------ NZ Email Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Ex. email@example.com" 
+            formControlName="nz_email"
+            type="email"
+            required>
+            <mat-error *ngIf="secondFormGroup.controls['nz_email'].hasError('email') 
+            && !secondFormGroup.controls['nz_email'].hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="secondFormGroup.controls['nz_email'].hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <mat-label>Emergency Contact:</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ Emergency Contact Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Name</mat-label>
+            <input matInput placeholder="E.g. James Smith" 
+            formControlName="emergency_contact_name"
+            required>
+          </mat-form-field>
+          <!------------------ Emergency Home Phone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Home Phone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="emergency_home_phone"
+            (keypress)="keyPressNumbers($event)"
+            required>
+          </mat-form-field>
+          <!------------------ Emergency Work Phone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Work Phone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="emergency_work_phone"
+            (keypress)="keyPressNumbers($event)">
+          </mat-form-field>
+          <!------------------ Emergency Cellphone Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Cellphone</mat-label>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="emergency_cellphone"
+            (keypress)="keyPressNumbers($event)">
+          </mat-form-field>
+          <!------------------ Emergency Contact Relationship Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Relationship</mat-label>
+            <input matInput placeholder="E.g. parents" 
+            formControlName="emergency_relationship"
+            (keypress)="keyPressText($event)"
+            required>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <!------------------ Academic Information ---------------->
+    <mat-step [stepControl]="thirdFormGroup" completed="true" 
+    aria-label="Academic information tab" 
+    errorMessage="Complete all required fields in this section before submitting this form.">
+      <ng-template matStepLabel>Academic Information</ng-template>
+      <div [formGroup]="thirdFormGroup">
+
+        <mat-label>What was the name of the last secondary school you attended? 
+          If study was overseas, write "overseas".</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ School Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>School Name</mat-label>
+            <input matInput placeholder="E.g. Overseas"
+            formControlName="school_name"
+            type="text">
+          </mat-form-field>
+          <!------------------ Last year of School Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Last Year at School</mat-label>
+            <input matInput placeholder="E.g. 2018"
+            formControlName="school_last_year"
+            type="text"
+            (keypress)="keyPressNumbers($event)">
+          </mat-form-field>
+        </div>
+
+        <mat-label>What is your highest school qualification?. If you select Other, please specify.</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ Highest Quallification Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Highest Qualification</mat-label>
+            <mat-select placeholder="Select a qualification" 
+            formControlName="qualification"
+            required>
+              <mat-option value="00 No formal secondary qualification">No formal secondary qualification</mat-option>
+              <mat-option value="11 14 or more credits at any level">14 or more credits at any level</mat-option>
+              <mat-option value="12 NCEA Level 1 or School Certificate">NCEA Level 1 or School Certificate</mat-option>
+              <mat-option value="13 NCEA Level 2 or 6th Form Certificate">NCEA Level 2 or 6th Form Certificate</mat-option>
+              <mat-option value="14 University Entrance">University Entrance</mat-option>
+              <mat-option value="15 NCEA Level 3 or Bursary or Scholarship">NCEA Level 3 or Bursary or Scholarship</mat-option>
+              <mat-option value="09 Other overseas qualification">Other overseas qualification</mat-option>
+              <mat-option value="98 Other">Other</mat-option>
+              <mat-option value="99 Not Known">Not Known</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <!------------------ Other Qualification Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Other Qualification</mat-label>
+            <input matInput placeholder="E.g. Cambridge exams)"
+            formControlName="qualification_other"
+            type="text">
+          </mat-form-field>
+          <!------------------ First Year of Tertiary Education Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Fist Year of Tertiary Education</mat-label>
+            <input matInput placeholder="E.g. 2019"
+            formControlName="first_tertiary_year"
+            type="text"
+            (keypress)="keyPressNumbers($event)">
+          </mat-form-field>
+        </div>
+
+        <mat-label>Have you attended a tertiary institution since 
+          leaving school e.g. Polytechnic, University, College of Education, Wananga or 
+          Private Training Estabrishment either in New Zealand or overseas, 
+          (not including STAR, community or hobby classes).</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ Attended Tertiary Institution Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Have you?</mat-label>
+            <mat-select placeholder="Select an option"
+            formControlName="attended_tertiary"
+            required>
+              <mat-option value="yes">Yes</mat-option>
+              <mat-option value="no">No</mat-option>
+            </mat-select>
+          </mat-form-field>  
+          <!------------------ First Year of Enrolment Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Year of first enrolment</mat-label>
+            <input matInput placeholder="E.g. 2019"
+            formControlName="first_enrolment_year"
+            type="text"
+            (keypress)="keyPressNumbers($event)">
+          </mat-form-field>
+        </div>
+
+        <mat-label>What was your prior activity or occupation as at 1 October last year?</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ Occupation Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Ocupation</mat-label>
+            <mat-select placeholder="Select an ocupation" 
+            formControlName="occupation"
+            required>
+              <mat-option value="01 Secondary school student">Secondary school student</mat-option>
+              <mat-option value="02 Unemployed or other beneficiary">Unemployed or other beneficiary</mat-option>
+              <mat-option value="03 Wage/salary worker">Wage/salary worker</mat-option>
+              <mat-option value="04 Self-employed<">Self-employed</mat-option>
+              <mat-option value="05 University student">University student</mat-option>
+              <mat-option value="06 Polytechnic student">Polytechnic student</mat-option>
+              <mat-option value="07 College of Education student">College of Education student</mat-option>
+              <mat-option value="08 Houseperson or retired<">Houseperson or retired</mat-option>
+              <mat-option value="09 Overseas (irrespective of occupation)">Overseas (irrespective of occupation)</mat-option>
+              <mat-option value="11 Private Training Estabrishment student">Private Training Estabrishment student</mat-option>
+              <mat-option value="12 Wananga student">Wananga student</mat-option>
+            </mat-select>
+          </mat-form-field>  
+        </div>
+
+        <mat-label>If you have attended a Private Training Estabrishment (PTE), provide the name and the year of the last one you attended.</mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ PTE Name Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>PTE Name</mat-label>
+            <input matInput placeholder=""
+            formControlName="pte_name"
+            type="text">
+          </mat-form-field>
+          <!------------------ PTE Lsst Year Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Year Last Attended</mat-label>
+            <input matInput placeholder="E.g. 2019"
+            formControlName="pte_last_year"
+            type="text"
+            (keypress)="keyPressNumbers($event)">
+          </mat-form-field>
+        </div>
+
+        <mat-label>What is your first language?</mat-label>
+
+        <div class="fields-grid">
+          <!------------------ First Language Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>First Language</mat-label>
+            <input matInput placeholder="E.g. English" 
+            formControlName="first_language"
+            type="text"
+            (keypress)="keyPressText($event)" 
+            required>
+          </mat-form-field>
+        </div>
+
+        <mat-label>What programme of study are you applying for? </mat-label>
+        
+        <div class="fields-grid">
+          <!------------------ Name of Programme Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Name of Programme</mat-label>
+            <input matInput placeholder="E.g. Diploma in IT Support" 
+            formControlName="programme_name"
+            required>
+          </mat-form-field>
+          <!------------------ Programme Start Date Field ---------------->
+          <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="programmePicker"
+            formControlName="programme_start_date"
+            (keypress)="false"
+            required>
+            <mat-datepicker-toggle matSuffix [for]="programmePicker"></mat-datepicker-toggle>
+            <mat-datepicker #programmePicker></mat-datepicker>
+          </mat-form-field>        
+        </div>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <!------------------ Privacy ---------------->
+    <mat-step [stepControl]="fourthFormGroup" completed="true" 
+    aria-label="Privacy statement tab" 
+    errorMessage="Complete all required fields in this section before submitting this form.">
+      <ng-template matStepLabel>Privacy</ng-template>
+      <div [formGroup]="fourthFormGroup">
+
+        <mat-label>
+          Manukau Institute of Technology ("MIT") observes the principles governing 
+          the release of personal information as set out in the Privacy Act 1993 ("the Act"). 
+          Personal information is defined in the Act as "information about an identifiable 
+          individual"; it may include, but is not limited to, information such as your name, 
+          age, postal and email address, your image, telephone numbers, IRD, course of study, 
+          and bank account details.
+        </mat-label><br /><br />
+        <mat-label>
+          MIT's primary purpose in the collection and storage of your personal information as 
+          a student is to provide you with the course of study for which you are enrolled, and 
+          to comply with various legislative reporting requirements. MIT may also collect and 
+          use your personal information for other purposes related to your course of study 
+          including corresponding with you for academic and administrative matters, publishing 
+          any award/s conferred on you by MIT during graduation, and sending you information 
+          about MIT courses and programmes that may be of interest to you. MIT may also seek 
+          personal information from other educational institutions and/or government agencies or 
+          other authorities or entities for the purpose of verifying and maintaining information 
+          relating to your academic records, to comply with MIT's reporting requirements and/or 
+          for statistical or research purposes relating to MIT's programmes.
+        </mat-label><br /><br />
+        <mat-label>
+          MIT contracts out certain aspects of MIT's support services/lT administration to 
+          external contractors which may mean that MIT's external contractors may have access 
+          to your personal information e.g. MIT's subsidiary that we use to manage and deliver 
+          certain courses and specific IT contractors that MIT may use to maintain its IT systems. 
+          MIT's contractors are required to sign confidentiality agreements and as such are only 
+          authorized to use or access personal information in order to deliver the 
+          functions/services that MIT has requested.
+        </mat-label><br /><br />
+        <mat-label>
+          Personal information collected on this form and at other times during and relating to 
+          your enrolment form at MIT may be disclosed to MIT academic and administrative staff 
+          where relevant to their duties, to other educational institutions for the purpose of 
+          verifying and maintaining academic records, and to Government agencies or other 
+          authorities as permitted or required by law. If you are a recent school/ Private 
+          Training Establishment (PTE) leaver, MIT may also advise your school/PTE when you 
+          first enrol (including details of what programme you have enrolled in) and when you 
+          complete an MIT qualification.
+        </mat-label><br /><br />
+        <mat-label>
+          Please note that your name, date of birth and residency status as entered on this 
+          enrolment form will be included in the National Student Index and will be used in an 
+          Authorised Information Matching programme with the New Zealand Birth Register. For 
+          further information please go online at www.minedu.govt.nz/goto/nsi
+        </mat-label><br /><br />
+        <mat-label>
+          You have the right to access and have corrected, personal information about you which 
+          has been collected by us.
+        </mat-label><br /><br />
+
+        <div class="fields-grid">
+          <!------------------ Privacy Checkbox ---------------->
+          <mat-checkbox 
+          formControlName="read_privacy_statement"
+          required>
+          By checking this box I declare to have read this privacy statement.
+          </mat-checkbox>
+          <br /><br />
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <!------------------ Declaration ---------------->
+    <mat-step [stepControl]="fifthFormGroup" completed="true" 
+    aria-label="Declaration statement tab" 
+    errorMessage="Complete all required fields in this section before submitting this form.">
+      <ng-template matStepLabel>Declaration</ng-template>
+      <div [formGroup]="fifthFormGroup">
+
+        <ul>
+          <li>
+              I declare that the information provided by me on this form is true and correct.
+          </li><br>
+          <li>
+              I understand that failure to disclose required information or the supply of
+              incorrect information may result in my enrolment not being processed, or in my
+              enrolment being cancelled.
+          </li><br>
+          <li>
+              I agree to abide by all MIT statutes, regulations and policies as may be amended
+              from time to time. Copies are available on the MIT website manukau.ac.nz. In particular,
+              you should note the MIT Student Regulations and the regulations applying to your programme
+              of study.
+          </li><br>
+          <li>
+              I have read and accept the Privacy and Policy statements printed on this form.
+          </li><br>
+          <li>
+              I acknowledge that all MIT courses and programmes will proceed subject to enrolment
+              numbers and MIT has the right to cancel or postpone an offering of a course or programme
+              prior to its commencement if there are insufficient enrolments.
+          </li><br>
+          <li>
+              I undertake to pay all fees and charges relating to my enrolment and to meet all
+              collection charges associated with debt recovery. Fees must be paid in full, or a signed
+              agreement made for their payment in instalments, by the start of the course. MIT may take
+              such steps as necessary to collect outstanding fees. Refunds and withdrawals will be
+              processed in accordance with the MIT International Policy.
+          </li><br>
+          <li>
+              I acknowledge that MIT may refuse to permit or may cancel my enrolment, on any of
+              the grounds set out in the Student Regulations. This includes, but is not limited to,
+              where I am found not to be of good character (including, but not limited to: having a
+              bad debt history; a criminal conviction; or a history of breaching MIT regulations or
+              policies); have been guilty of misconduct or a breach of discipline; am enrolled for
+              fulltime instruction in another institution or secondary school; or have made
+              insufficient progress in my studies. I further acknowledge that MIT may withdraw my
+              enrolment from a course where I have not attended in the first three weeks.
+          </li><br>
+          <li>
+              I understand that is it my responsibility to ensure that my visa is current at all
+              times and that MIT has the right to cancel my enrolment and retain the tuition fee if my
+              visa has expired while studying at MIT.
+          </li><br>
+          <li>
+              I understand that MIT may need to validate the information provided on this form
+              and attachments.
+          </li><br>
+          <li>
+              I authorise MIT to collect information for this purpose from any agency holding
+              the source of this information.
+          </li><br>
+      </ul>
+
+        <div class="fields-grid">
+          <!------------------ Declaration Checkbox ---------------->
+          <mat-checkbox 
+          formControlName="read_declaration_statement"
+          required>
+          By checking this box I declare to have read this declaration statement.  
+          </mat-checkbox><br /><br />
+          <mat-label>
+            NOTE: If you completing this form on behalf of the student, you must have neccessary authorisation through legal guardianship or power of attorney.
+          </mat-label>
+          <br /><br />
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step aria-label="Form submited tab">
+      <ng-template matStepLabel>Done</ng-template>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="warn" 
+        [disabled]="!firstFormGroup.valid || 
+        !secondFormGroup.valid ||
+        !thirdFormGroup.valid ||
+        !fourthFormGroup.valid ||
+        !fifthFormGroup.valid" 
+        (click)="onSubmitForm()" 
+        matStepperNext>
+        Subtmit this form now</button>
+      </div>
+    </mat-step>
+
+  </mat-vertical-stepper>

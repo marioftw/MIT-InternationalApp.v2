@@ -1,0 +1,72 @@
+* {
+  font-family:monospace;
+  color: #ffffff;
+}
+
+/* MAL: First section */
+
+#home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10%;
+}
+
+#logo {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+  padding: 5px;
+  padding-top: 50px;
+}
+
+
+/* MAL: Second section */
+
+.action-section {
+  display: flex;
+  align-items: center;
+  padding-bottom: 30px;
+}
+
+h2 {
+  font-size: 35px;
+  text-align: center;
+  margin: 1em;
+  font-family: inherit;
+}
+
+.button {
+  text-align: center;
+  margin: 1em;
+  padding: 10px;
+  font-size: 35px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100%;
+  border: 2px solid white;
+  background-color: #cf0d1d;
+}
+
+.button1:hover {
+  background-color: #0095c8;
+}
+
+.button2:hover {
+  background-color: #ffcc00;
+}
+
+/* MAL: add a break point at 800px: */
+@media screen and (max-width: 800px) {
+  .action-section {
+    flex-direction: column;
+    margin-top: 50px;
+  }
+  h2 {
+    margin: 0em;
+  }
+}

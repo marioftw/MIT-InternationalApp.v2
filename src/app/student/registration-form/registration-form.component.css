@@ -1,0 +1,29 @@
+#registration-form {
+  margin: 40px;
+}
+
+.mat-h1 {
+  margin-bottom: 40px;
+}
+
+.mat-stepper-vertical {
+  margin-top: 16px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+  margin-right: 32px;
+  min-width: 150px;
+}
+
+.fields-grid {
+  display: flexbox;
+}
+
+.file-upload {
+  margin-bottom: 32px;
+}
+
+.mat-checkbox {
+  margin-right: 8px;
+}
