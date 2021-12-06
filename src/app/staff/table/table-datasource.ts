@@ -3,8 +3,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
-import { Users } from 'src/app/core/models/users';
-import { UsersService } from 'src/app/core/services/users.service';
+import { Users } from 'src/app/models/users';
+import { UsersService } from 'src/app/services/users.service';
 
 
 //const DATA: Users[] = loadStudentsByCreatedOn()

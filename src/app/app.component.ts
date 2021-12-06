@@ -4,7 +4,7 @@ import {from, Observable} from 'rxjs';
 import {concatMap, filter, map} from 'rxjs/operators';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {Router} from '@angular/router';
-import { AuthTokenService } from './core/services/auth-token.service';
+import { AuthTokenService } from './services/auth-token.service';
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,103 @@
+<div id="search-table">
+  <h1 class="mat-h1">Search Students</h1>
+  <mat-form-field appearance="standard">
+    <mat-label>Search</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="E.g. Mario" #input>
+  </mat-form-field>
+  <div class="mat-elevation-z8" >
+    <table mat-table matSort aria-label="Table of users" [dataSource]="loadedStudents$">
+      <!-- Id Column -->
+      <ng-container matColumnDef="id">
+        <th class="id-column" mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+        <td mat-cell *matCellDef="let users">{{users.id}}</td>
+      </ng-container>
+
+      <!-- First Name Column -->
+      <ng-container matColumnDef="first_name">
+        <th class="name-column" mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+        <td mat-cell *matCellDef="let users">{{users.first_name}}</td>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="second_name">
+        <th class="name-column" mat-header-cell *matHeaderCellDef mat-sort-header>Second Name</th>
+        <td mat-cell *matCellDef="let users">{{users.second_name}}</td>
+      </ng-container>
+
+      <!-- Last Name Column -->
+      <ng-container matColumnDef="last_name">
+        <th class="name-column" mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+        <td mat-cell *matCellDef="let users">{{users.last_name}}</td>
+      </ng-container>
+
+      <!-- Prefered Name Column -->
+      <ng-container matColumnDef="prefered_name">
+        <th class="prefered-name-column" mat-header-cell *matHeaderCellDef mat-sort-header>Prefered Name</th>
+        <td mat-cell *matCellDef="let users">{{users.first_name}} {{users.last_name}}</td>
+      </ng-container>
+
+      <!-- Email Column -->
+      <ng-container matColumnDef="home_email">
+        <th class="email-column" mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+        <td mat-cell *matCellDef="let users">{{users.home_email}}</td>
+      </ng-container>
+
+      <!-- NZ Phone Column -->
+      <ng-container matColumnDef="nz_phone">
+        <th class="phone-column" mat-header-cell *matHeaderCellDef mat-sort-header>NZ Phone</th>
+        <td mat-cell *matCellDef="let users">{{users.nz_phone}}</td>
+      </ng-container>
+
+      <!-- Date of Birth Column -->
+      <ng-container matColumnDef="dateOfBirth">
+        <th class="dateOfBirth-column" mat-header-cell *matHeaderCellDef mat-sort-header>Date of Birth</th>
+        <td mat-cell *matCellDef="let users">{{users.dateOfBirth.toDate() | date: 'dd MMM yyyy'}}</td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th class="actions-column" mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button (click)="editStudent(user)"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data ...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data to load.
+        </mat-footer-cell>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns;  sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns" fixedInViewport></tr>
+    
+      <!-- Row shown when there is no matching data. -->
+      <!-- <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      </tr> -->
+      <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': dataSource!=null}"></mat-footer-row>
+      <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': dataSource!=null && dataSource.data.length==0}"></mat-footer-row>
+    </table>
+  </div>
+  <mat-paginator #paginator
+    [length]="users?.length"
+    [pageIndex]="0"
+    [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>
+
+
+
+<!-- <mat-form-field appearance="fill">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field> -->
+
+

@@ -2,7 +2,7 @@
   <h1 class="mat-h1">Registration Form</h1>
   <h3>This form is to be completed only by new applicants who are International Students.</h3>
   <h3>Manukau Institute of Technology is a state-funded tertiary provider, and as such we are required to provide statitical information to the Ministry of Education.</h3>
-  <h3>All section of this form must be completed and all the necessary documentation provided, to enable your enrolment to be fully processed.</h3>
+  <h3>All section of this form must be completed and all the necessary documentation provided, to enable your enrolment to be fully processed.</h3><br>
 
   <mat-vertical-stepper class="mat-elevation-z5" linear="true" >
     
@@ -160,7 +160,7 @@
               <mat-option value="New Zealand European/Pakeha">New Zealand European/Pakeha</mat-option>
               <mat-option value="New Zealand Māori">New Zealand Māori</mat-option>
               <mat-option value="Samoan">Samoan</mat-option>
-              <mat-option value="Cook Island Māori<">Cook Island Māori</mat-option>
+              <mat-option value="Cook Island Māori">Cook Island Māori</mat-option>
               <mat-option value="Tongan">Tongan</mat-option>
               <mat-option value="Niuean">Niuean</mat-option>
               <mat-option value="Tokelauen">Tokelauen</mat-option>
@@ -297,28 +297,43 @@
           <!------------------ Home Address Field ---------------->
           <mat-form-field appearance="outline">
             <mat-label>Address</mat-label>
-            <input matInput placeholder="E.g. 123 Sesame Street" formControlName="home_address" required>
+            <input matInput placeholder="E.g. 123 Sesame Street" 
+            formControlName="home_address" 
+            required>
           </mat-form-field>
           <!------------------ Home Town/city Field ---------------->
           <mat-form-field appearance="outline">
             <mat-label>Town/city</mat-label>
-            <input matInput placeholder="E.g. New York" formControlName="home_city" type="text" required>
+            <input matInput placeholder="E.g. New York" 
+            formControlName="home_city" 
+            type="text" 
+            required>
           </mat-form-field>
           <!------------------ Home Country Field ---------------->
           <mat-form-field appearance="outline">
             <mat-label>Country</mat-label>
-            <input matInput placeholder="E.g. United States" formControlName="home_country" type="text"  required>
+            <input matInput placeholder="E.g. United States" 
+            formControlName="home_country" 
+            type="text"  
+            required>
           </mat-form-field>
           <!------------------ Home Phone Field ---------------->
           <mat-form-field appearance="outline">
             <mat-label>Phone</mat-label>
-            <input matInput placeholder="E.g. +0123456789" formControlName="home_phone" type="text" (keypress)="keyPressNumbers($event)" required>
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="home_phone" 
+            type="tel" 
+            (keypress)="keyPressNumbers($event)" 
+            required>
             <span matPrefix>+&nbsp;</span>
           </mat-form-field>
           <!------------------ Home Cellphone Field ---------------->
           <mat-form-field appearance="outline">
             <mat-label>Cellphone</mat-label>
-            <input matInput placeholder="E.g. +0123456789" formControlName="home_cellphone" type="text" (keypress)="keyPressNumbers($event)">
+            <input matInput placeholder="E.g. +0123456789" 
+            formControlName="home_cellphone" 
+            type="tel" 
+            (keypress)="keyPressNumbers($event)">
             <span matPrefix>+&nbsp;</span>
           </mat-form-field>
           <!------------------ Home Email Field ---------------->
@@ -372,7 +387,7 @@
             <mat-label>Phone</mat-label>
             <input matInput placeholder="E.g. +0123456789" 
             formControlName="work_phone" 
-            type="text" 
+            type="tel" 
             (keypress)="keyPressNumbers($event)">
             <span matPrefix>+&nbsp;</span>
           </mat-form-field>
@@ -381,7 +396,7 @@
             <mat-label>Cellphone</mat-label>
             <input matInput placeholder="E.g. +0123456789" 
             formControlName="work_cellphone" 
-            type="text" 
+            type="tel" 
             (keypress)="keyPressNumbers($event)">
             <span matPrefix>+&nbsp;</span>
           </mat-form-field>
@@ -458,7 +473,7 @@
             <mat-label>Cellphone</mat-label>
             <input matInput placeholder="E.g. +0123456789" 
             formControlName="nz_cellphone"
-            type="text"
+            type="tel"
             (keypress)="keyPressNumbers($event)">
           </mat-form-field>
           <!------------------ NZ Email Field ---------------->
@@ -494,6 +509,7 @@
             <input matInput placeholder="E.g. +0123456789" 
             formControlName="emergency_home_phone"
             (keypress)="keyPressNumbers($event)"
+            type="tel"
             required>
           </mat-form-field>
           <!------------------ Emergency Work Phone Field ---------------->
@@ -501,6 +517,7 @@
             <mat-label>Work Phone</mat-label>
             <input matInput placeholder="E.g. +0123456789" 
             formControlName="emergency_work_phone"
+            type="tel"
             (keypress)="keyPressNumbers($event)">
           </mat-form-field>
           <!------------------ Emergency Cellphone Field ---------------->
@@ -508,6 +525,7 @@
             <mat-label>Cellphone</mat-label>
             <input matInput placeholder="E.g. +0123456789" 
             formControlName="emergency_cellphone"
+            type="tel"
             (keypress)="keyPressNumbers($event)">
           </mat-form-field>
           <!------------------ Emergency Contact Relationship Field ---------------->
@@ -683,6 +701,7 @@
             <mat-label>Name of Programme</mat-label>
             <input matInput placeholder="E.g. Diploma in IT Support" 
             formControlName="programme_name"
+            type="text"
             required>
           </mat-form-field>
           <!------------------ Programme Start Date Field ---------------->
@@ -764,7 +783,7 @@
         <div class="fields-grid">
           <!------------------ Privacy Checkbox ---------------->
           <mat-checkbox 
-          formControlName="read_privacy_statement"
+          formControlName="read_registration_privacy"
           required>
           By checking this box I declare to have read this privacy statement.
           </mat-checkbox>
@@ -842,14 +861,10 @@
         <div class="fields-grid">
           <!------------------ Declaration Checkbox ---------------->
           <mat-checkbox 
-          formControlName="read_declaration_statement"
+          formControlName="read_registration_declaration"
           required>
           By checking this box I declare to have read this declaration statement.  
           </mat-checkbox><br /><br />
-          <mat-label>
-            NOTE: If you completing this form on behalf of the student, you must have neccessary authorisation through legal guardianship or power of attorney.
-          </mat-label>
-          <br /><br />
         </div>
       </div>
       <div>
@@ -858,16 +873,58 @@
       </div>
     </mat-step>
 
+    <!------------------ International Student Declaration ---------------->
+    <mat-step [stepControl]="sixFormGroup" completed="true" 
+    aria-label="International Student Declaration tab" 
+    errorMessage="Complete all required fields in this section before submitting this form.">
+      <ng-template matStepLabel>International Student Declaration</ng-template>
+      <div [formGroup]="sixFormGroup">
+
+        <mat-label>
+          I authorise that if at any time I am seriously ill and/or hospitalized, 
+          or have serious personal problems, while studying at Manukau Institute 
+          of Technology, the relevant staff at Manukau Institute of Technology's
+          International Centre, have the right to be kept fully informed of my 
+          condition and circunstances by the authorities (including Dcotor, 
+          Hospital, Counsellor, Police) and/or other Manukau Institute of Technology
+          staff.
+        </mat-label><br /><br />
+        <mat-label>
+          Manukau Institute of Technology has the right to inform my parents, 
+          next of kin and/or aducation agent.
+        </mat-label><br /><br />
+
+        <div class="fields-grid">
+          <!------------------ International Student Declaration Checkbox ---------------->
+          <mat-checkbox 
+          formControlName="read_registration_rightToInform"
+          required>
+          By checking this box I declare to have read this declaration statement.  
+          </mat-checkbox><br /><br />
+        </div>
+      </div>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-raised-button color="primary" matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <!------------------ Done Step ---------------->
     <mat-step aria-label="Form submited tab">
       <ng-template matStepLabel>Done</ng-template>
       <div>
+        <mat-label>
+          NOTE: If you are completing this form on behalf of the student, you must have neccessary authorisation through legal guardianship or power of attorney.
+        </mat-label>
+        <br /><br />
         <button mat-button matStepperPrevious>Back</button>
         <button mat-raised-button color="warn" 
         [disabled]="!firstFormGroup.valid || 
         !secondFormGroup.valid ||
         !thirdFormGroup.valid ||
         !fourthFormGroup.valid ||
-        !fifthFormGroup.valid" 
+        !fifthFormGroup.valid ||
+        !sixFormGroup.valid" 
         (click)="onSubmitForm()" 
         matStepperNext>
         Subtmit this form now</button>

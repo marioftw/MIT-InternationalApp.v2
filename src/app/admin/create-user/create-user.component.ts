@@ -5,8 +5,8 @@ import { Router } from '@angular/router';
 import Timestamp = firebase.firestore.Timestamp;
 import { throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Users } from 'src/app/core/models/users';
-import { UsersService } from 'src/app/core/services/users.service';
+import { Users } from 'src/app/models/users';
+import { UsersService } from 'src/app/services/users.service';
 import firebase from 'firebase';
 
 @Component({

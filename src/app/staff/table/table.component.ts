@@ -1,11 +1,13 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Users } from 'src/app/core/models/users';
-import { UsersService } from 'src/app/core/services/users.service';
+import { Users } from 'src/app/models/users';
+import { UsersService } from 'src/app/services/users.service';
 import { map } from 'rxjs/operators';
 import { Observable, of as observableOf, merge } from 'rxjs';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { EditStudentComponent } from '../edit-student/edit-student.component';
 
 @Component({
   selector: 'app-table',
@@ -13,33 +15,86 @@ import { Observable, of as observableOf, merge } from 'rxjs';
   styleUrls: ['./table.component.css']
 })
 
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-  @ViewChild(MatTable) table!: MatTable<Users>;
 
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['id', 'first_name', 'last_name', 'email', 'dateOfBirth'];
+  loadedStudents$: Observable<Users[]>;
+  dataSource: MatTableDataSource<any>;
+  //users: Users[];
+  displayedColumns = ['id', 'first_name', 'second_name','last_name', 'prefered_name','home_email', 'nz_phone', 'dateOfBirth', 'actions'];
 
-  dataSource: MatTableDataSource<Users>;
+  @Input()
   users: Users[];
+  
+  @Output()
+  studentEdited = new EventEmitter();
 
   constructor(
-    private usersService: UsersService
+    private usersService: UsersService,
+    private dialog: MatDialog
     ) {
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(this.users);
+    // MAL: Assign the data to the data source for the table to render
+    this.dataSource = new MatTableDataSource<Users>(this.users);
   }
 
-  ngAfterViewInit(): void {
+  ngOnInit() {
+    this.loadContent();
+    // MAL: reference video: https://www.youtube.com/watch?v=7wilnsiotqM
+  //   this.usersService.loadStudentsByCreatedOn()
+  //   .subscribe(
+  //     list => {
+  //       let array = list.map(item => {
+  //         return {
+
+  //         };
+  //       });
+  //       this.dataSource = new MatTableDataSource(array);
+  //     }
+  //   )
+  }
+
+  loadContent() {
+    this.loadedStudents$ = this.usersService.loadStudentsByCreatedOn();
     this.usersService.loadStudentsByCreatedOn()
     .pipe()
     .subscribe(
       users => this.users = users
     );
-    this.table.dataSource = this.dataSource;
+  }
+
+  ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  editStudent(student:Users) {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.minWidth = "400px";
+
+    dialogConfig.data = student;
+
+    this.dialog.open(EditStudentComponent, dialogConfig)
+        .afterClosed()
+        .subscribe(val => {
+            if (val) {
+                this.studentEdited.emit();
+            }
+        });
+
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 
   connect(): Observable<Users[]> {
@@ -82,15 +137,6 @@ export class TableComponent implements AfterViewInit {
         default: return 0;
       }
     });
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
 
 }

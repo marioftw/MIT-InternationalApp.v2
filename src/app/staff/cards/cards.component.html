@@ -1,0 +1,71 @@
+<mat-card *ngFor="let user of users" class="card mat-elevation-z2">
+
+    <div class="in-card">
+
+        <div class="student-tittle">
+            <mat-card-title>{{user.first_name +" "+ user.last_name}}</mat-card-title>
+            <mat-card-subtitle>ID: {{user.id}}</mat-card-subtitle>
+        </div>
+
+        <mat-card-content>
+            <!------------------ Prefered Name Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>Prewfered Name</mat-label>
+                <input matInput [disabled]="true">
+                {{user.prefered_first_name +" "+ user.prefered_family_name}}
+            </mat-form-field>
+            <!------------------ Email Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>Email</mat-label>
+                <input matInput [disabled]="true">
+                {{user.home_email}}
+            </mat-form-field>
+            <!------------------ NZ Phone Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>NZ Phone</mat-label>
+                <input matInput [disabled]="true">
+                {{user.nz_phone}}
+            </mat-form-field>
+            <!------------------ Programme Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>Programme</mat-label>
+                <input matInput [disabled]="true">
+                {{user.programme_name}}
+            </mat-form-field>
+            <!------------------ Citizenship Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>Citizenship</mat-label>
+                <input matInput [disabled]="true">
+                {{user.citizenship}}
+            </mat-form-field>
+            <!------------------ Date of Birth Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [disabled]="true">
+                {{user.dateOfBirth.toDate() | date: 'dd MMM yyyy'}}
+            </mat-form-field>
+            <!------------------ Emergency contact Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>Emergency Contact</mat-label>
+                <input matInput [disabled]="true">
+                {{user.emergency_contact_name}} ({{user.emergency_relationship}})
+            </mat-form-field>
+            <!------------------ Emergency number Field ---------------->
+            <mat-form-field appearance="classic">
+                <mat-label>Emergency Number</mat-label>
+                <input matInput [disabled]="true">
+                {{user.emergency_home_phone}}
+            </mat-form-field>
+        </mat-card-content>
+
+    </div>
+
+
+    <mat-card-actions align="end">
+        <button mat-raised-button color="primary" (click)="editStudent(user)">Edit</button>
+        <button mat-mini-fab color="warn" (click)="deleteStudent(user)">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </mat-card-actions>
+
+</mat-card>

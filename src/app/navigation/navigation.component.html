@@ -1,6 +1,5 @@
 <mat-sidenav-container class="sidenav-container">
   
-  
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
@@ -86,6 +85,14 @@
         </button>
       </a>
 
+      <!--  Enrolment Form  -->
+      <a mat-list-item routerLink="enrolment-form" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
+        <button mat-icon-button>
+          <mat-icon>description</mat-icon>
+          Enrolment Form
+        </button>
+      </a>
+
       <!--                         GENERAL                     -->
       <!--------------------------------------------------------->
       <mat-divider *ngIf="user.isLoggedIn$ | async"></mat-divider>
@@ -132,7 +139,6 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-
     <mat-toolbar>
       <span class="toolbar-title">MIT International Hub</span>
       <span class="toolbar-spacer"></span>
@@ -144,10 +150,8 @@
         <mat-icon aria-label="Side nav toggle icon" style="margin-right: 0;">menu</mat-icon>
       </button>
     </mat-toolbar>
-
     <!-- Add Content Here -->
     <router-outlet></router-outlet>
-
   </mat-sidenav-content>
 
 </mat-sidenav-container>

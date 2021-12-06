@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { AuthInterceptor } from './core/services/auth.interceptor';
+import { AuthInterceptor } from './services/auth.interceptor';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 
 // Material
@@ -46,29 +46,32 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 // Components -- Shared
 import { HomeComponent } from './home/home.component';
 import { SitePoliciesComponent } from './shared/site-policies/site-policies.component';
-import { RegistrationFormComponent } from './student/registration-form/registration-form.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { TableComponent } from './shared/table/table.component';
-import { DashboardComponent } from './staff/dashboard/dashboard.component';
-import { CardsComponent } from './shared/cards/cards.component';
-import { EditStudentComponent } from './shared/edit-student/edit-student.component';
-import { CardsGridComponent } from './shared/cards-grid/cards-grid.component';
+import { TableComponent } from './staff/table/table.component';
+import { CardsComponent } from './staff/cards/cards.component';
+import { CardsGridComponent } from './staff/cards-grid/cards-grid.component';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './shared/about/about.component';
 
 // Components -- Admin
 import { CreateUserComponent } from './admin/create-user/create-user.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+
+// Components -- Staff
+import { DashboardComponent } from './staff/dashboard/dashboard.component';
+import { EditStudentComponent } from './staff/edit-student/edit-student.component';
+
+// Components -- Student
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
+import { RegistrationFormComponent } from './student/registration-form/registration-form.component'
+import { EnrolmentFormComponent } from './student/enrolment-form/enrolment-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     AboutComponent,
-
     LoginComponent,
-    // Shared
     HomeComponent,
     RegistrationFormComponent,
     NavigationComponent,
@@ -78,9 +81,9 @@ import { StudentDashboardComponent } from './student/student-dashboard/student-d
     EditStudentComponent,
     CardsGridComponent,
     SitePoliciesComponent,
-    // Admin
     CreateUserComponent,
-    StudentDashboardComponent
+    StudentDashboardComponent,
+    EnrolmentFormComponent
 
 
   ],
@@ -95,7 +98,6 @@ import { StudentDashboardComponent } from './student/student-dashboard/student-d
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    // Material
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -116,7 +118,6 @@ import { StudentDashboardComponent } from './student/student-dashboard/student-d
     MatRadioModule,
     MatStepperModule,
     MatCheckboxModule,
-    // Firebase
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireStorageModule,

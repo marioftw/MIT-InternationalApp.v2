@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Users } from 'src/app/core/models/users';
-import { UsersService } from 'src/app/core/services/users.service';
+import { Users } from 'src/app/models/users';
+import { UsersService } from 'src/app/services/users.service';
 
 @Component({
   selector: 'app-cards-grid',
@@ -31,7 +31,7 @@ export class CardsGridComponent implements OnInit {
 
   loadStudents() {
 
-    this.students$ = this.usersServices.loadUsersByRole("student");
+    this.students$ = this.usersServices.loadStudentsByCreatedOn();
 
     this.staff$ = this.usersServices.loadUsersByRole("staff");
 

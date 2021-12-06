@@ -1,0 +1,565 @@
+<div id="enrolment-form">
+    <h1 class="mat-h1">New International Student<br>Enrolment Form</h1>
+    <h3>This form is to be completed only by new applicants who are International Students.</h3>
+    <h3>Find your programme and courses code in you School's Prgramme Guide on our website. 
+        <a mat-list-item href="https://www.manukau.ac.nz/" target="_blank">
+            www.manukau.ac.nz</a>
+    </h3><br>
+
+    <mat-vertical-stepper class="mat-elevation-z5" linear="true" >
+      
+        <!------------------ Personal Details ---------------->
+        <mat-step [stepControl]="firstFormGroup" completed="true"
+        aria-label="Personal details tab" 
+        errorMessage="Complete all required fields in this section before submitting this form.">
+        <ng-template matStepLabel>Personal Details</ng-template>
+            <div [formGroup]="firstFormGroup">
+                
+                <mat-label>MIT Student ID Number (if known):</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Student ID Field ---------------->
+                    <mat-form-field appearance="outline">
+                    <mat-label>Student ID</mat-label>
+                    <input matInput #ID (keypress)="keyPressNumbers($event)" 
+                    formControlName="id" placeholder="Ex. 123456789">
+                    <mat-hint align="end">{{ID.value.length}} / 9</mat-hint>
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Please enter your legal name in full as on your passport.</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Family Name Field ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Family Name</mat-label>
+                        <input matInput placeholder="E.g. Smith" 
+                        formControlName="last_name" 
+                        type="text" 
+                        required>
+                    </mat-form-field>
+                    <!------------------ First Name Field ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>First Name</mat-label>
+                        <input matInput placeholder="E.g. John" 
+                        formControlName="first_name" 
+                        type="text" 
+                        required>
+                    </mat-form-field>
+                    <!------------------ Second Name Field ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Second Name</mat-label>
+                        <input matInput placeholder="E.g. William" 
+                        formControlName="second_name"
+                        type="text">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" matStepperNext>Next</button>
+                  </div>
+            </div>
+        </mat-step>
+
+        <!------------------ Programme to be Studies ---------------->
+        <mat-step [stepControl]="secondFormGroup" completed="true"
+        aria-label="Programme to be studied tab" 
+        errorMessage="Complete all required fields in this section before submitting this form.">
+        <ng-template matStepLabel>Programme to Be Studied</ng-template>
+            <div [formGroup]="secondFormGroup">
+                
+                <mat-label>What programme of study are you applying for?</mat-label><br>
+                <mat-label>E.g. (Degree / Diploma / Certificate / Certificate of Achivement or other)</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Name of Programme Field ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Name of Programme</mat-label>
+                        <input matInput placeholder="E.g. Bachelor of Digital Technologies (LEVEL 7)" 
+                        formControlName="programme_name"
+                        type="text"
+                        required>
+                    </mat-form-field>
+                    <!------------------ Programme Code Field ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Programme Code</mat-label>
+                        <input matInput placeholder="E.g. MN4563"
+                        formControlName="programme_code"
+                        type="text"
+                        required>
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Do you expect do complete this qualification this year?</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Expected to complete qualification checkbox ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-select placeholder="Select an option" 
+                        formControlName="programme_expected_completion"
+                        required>
+                        <mat-option value="yes">Yes</mat-option>
+                        <mat-option value="no">No</mat-option>
+                        </mat-select>
+                    </mat-form-field>  
+                </div>
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" matStepperNext>Next</button>
+                  </div>
+            </div>
+        </mat-step>
+
+        <!------------------ Course/Class Enrolment ---------------->
+        <mat-step [stepControl]="thirdFormGroup" completed="true"
+        aria-label="Course/Class Enrolment tab" 
+        errorMessage="Complete all required fields in this section before submitting this form.">
+        <ng-template matStepLabel>Course/Class Enrolment</ng-template>
+            <div [formGroup]="thirdFormGroup">
+                
+                <mat-label>Course/class 1:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 01 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_01_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586" required>
+                    </mat-form-field>
+                    <!------------------ Course Occurance 01 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_01_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 01 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title</mat-label>
+                        <input matInput formControlName="course_01_title" 
+                        type="text" placeholder="E.g. Computer Architecture" required>
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 2:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 02 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_02_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 02 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_02_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 02 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title</mat-label>
+                        <input matInput formControlName="course_02_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 3:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 03 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_03_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 03 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_03_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 03 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title</mat-label>
+                        <input matInput formControlName="course_03_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 4:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 04 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_04_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 04 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_04_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 04 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title:</mat-label>
+                        <input matInput formControlName="course_04_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 5:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 05 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_05_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 05 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_05_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 05 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title:</mat-label>
+                        <input matInput formControlName="course_05_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 6:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 06 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_06_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 06 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_06_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 06 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title:</mat-label>
+                        <input matInput formControlName="course_06_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 7:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 07 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_07_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 07 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_07_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 07 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title:</mat-label>
+                        <input matInput formControlName="course_07_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 8:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 08 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_08_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 08 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_08_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 08 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title:</mat-label>
+                        <input matInput formControlName="course_08_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 9:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 09 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_09_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 09 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_09_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 09 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title:</mat-label>
+                        <input matInput formControlName="course_09_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <mat-label>Course/class 10:</mat-label>
+
+                <div class="fields-grid">
+                    <!------------------ Course Code 10 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Code: xx.xx</mat-label>
+                        <input matInput formControlName="course_10_code" 
+                        type="text" maxlength="7" placeholder="E.g. 565.586">
+                    </mat-form-field>
+                    <!------------------ Course Occurance 10 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Occurance: xx-xx-xx</mat-label>
+                        <input matInput formControlName="course_10_occurance" 
+                        type="text" maxlength="8" placeholder="E.g. 22-MC-10">
+                    </mat-form-field>
+                    <!------------------ Course Title 10 ---------------->
+                    <mat-form-field appearance="outline">
+                        <mat-label>Course Title:</mat-label>
+                        <input matInput formControlName="course_10_title" 
+                        type="text" placeholder="E.g. Computer Architecture">
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <button mat-button matStepperPrevious>Back</button>
+                    <button mat-raised-button color="primary" matStepperNext>Next</button>
+                </div>
+            </div>
+        </mat-step>
+
+        <!------------------ Programme Transfers ---------------->
+        <mat-step [stepControl]="fourthFormGroup" completed="true" 
+        aria-label="Programme Transfers tab" 
+        errorMessage="Complete all required fields in this section before submitting this form.">
+        <ng-template matStepLabel>Programme Transfers</ng-template>
+        <div [formGroup]="fourthFormGroup">
+
+            <mat-label>
+            Transfers may only be accepted withim two weeks from the course start date amd
+            within the current year, calculated from the start date of the course in which 
+            the student initially enrolled. All applications will be considered for aproval
+            or declination by the appropiate Head of School. The student must pay any direct
+            costs incured by the original School e.g. equitment, uniforms, books.
+            </mat-label><br /><br />
+            <mat-label>
+            A $100 administration fee will be charged for every approved transfer.
+            </mat-label><br /><br />
+
+            <div class="fields-grid">
+            <!------------------ Programme Transfers Checkbox ---------------->
+            <mat-checkbox 
+            formControlName="read_enrolment_transfers"
+            required>
+            By checking this box I declare to have read this programme transfers statement.
+            </mat-checkbox>
+            <br /><br />
+            </div>
+        </div>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+        </mat-step>
+
+        <!------------------ Privacy ---------------->
+        <mat-step [stepControl]="fifthFormGroup" completed="true" 
+        aria-label="Privacy statement tab" 
+        errorMessage="Complete all required fields in this section before submitting this form.">
+        <ng-template matStepLabel>Privacy</ng-template>
+        <div [formGroup]="fifthFormGroup">
+
+            <mat-label>
+            Manukau Institute of Technology ("MIT") observes the principles governing 
+            the release of personal information as set out in the Privacy Act 1993 ("the Act"). 
+            Personal information is defined in the Act as "information about an identifiable 
+            individual"; it may include, but is not limited to, information such as your name, 
+            age, postal and email address, your image, telephone numbers, IRD, course of study, 
+            and bank account details.
+            </mat-label><br /><br />
+            <mat-label>
+            MIT's primary purpose in the collection and storage of your personal information as 
+            a student is to provide you with the course of study for which you are enrolled, and 
+            to comply with various legislative reporting requirements. MIT may also collect and 
+            use your personal information for other purposes related to your course of study 
+            including corresponding with you for academic and administrative matters, publishing 
+            any award/s conferred on you by MIT during graduation, and sending you information 
+            about MIT courses and programmes that may be of interest to you. MIT may also seek 
+            personal information from other educational institutions and/or government agencies or 
+            other authorities or entities for the purpose of verifying and maintaining information 
+            relating to your academic records, to comply with MIT's reporting requirements and/or 
+            for statistical or research purposes relating to MIT's programmes.
+            </mat-label><br /><br />
+            <mat-label>
+            MIT contracts out certain aspects of MIT's support services/lT administration to 
+            external contractors which may mean that MIT's external contractors may have access 
+            to your personal information e.g. MIT's subsidiary that we use to manage and deliver 
+            certain courses and specific IT contractors that MIT may use to maintain its IT systems. 
+            MIT's contractors are required to sign confidentiality agreements and as such are only 
+            authorized to use or access personal information in order to deliver the 
+            functions/services that MIT has requested.
+            </mat-label><br /><br />
+            <mat-label>
+            Personal information collected on this form and at other times during and relating to 
+            your enrolment form at MIT may be disclosed to MIT academic and administrative staff 
+            where relevant to their duties, to other educational institutions for the purpose of 
+            verifying and maintaining academic records, and to Government agencies or other 
+            authorities as permitted or required by law. If you are a recent school/ Private 
+            Training Establishment (PTE) leaver, MIT may also advise your school/PTE when you 
+            first enrol (including details of what programme you have enrolled in) and when you 
+            complete an MIT qualification.
+            </mat-label><br /><br />
+            <mat-label>
+            Please note that your name, date of birth and residency status as entered on this 
+            enrolment form will be included in the National Student Index and will be used in an 
+            Authorised Information Matching programme with the New Zealand Birth Register. For 
+            further information please go online at www.minedu.govt.nz/goto/nsi
+            </mat-label><br /><br />
+            <mat-label>
+            You have the right to access and have corrected, personal information about you which 
+            has been collected by us.
+            </mat-label><br /><br />
+
+            <div class="fields-grid">
+            <!------------------ Privacy Checkbox ---------------->
+            <mat-checkbox 
+            formControlName="read_enrolment_privacy"
+            required>
+            By checking this box I declare to have read this privacy statement.
+            </mat-checkbox>
+            <br /><br />
+            </div>
+        </div>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+        </mat-step>
+
+        <!------------------ Declaration ---------------->
+        <mat-step [stepControl]="sixFormGroup" completed="true" 
+        aria-label="Declaration statement tab" 
+        errorMessage="Complete all required fields in this section before submitting this form.">
+        <ng-template matStepLabel>Declaration</ng-template>
+        <div [formGroup]="sixFormGroup">
+
+            <ul>
+            <li>
+                I declare that the information provided by me on this form is true and correct.
+            </li><br>
+            <li>
+                I understand that failure to disclose required information or the supply of
+                incorrect information may result in my enrolment not being processed, or in my
+                enrolment being cancelled.
+            </li><br>
+            <li>
+                I agree to abide by all MIT statutes, regulations and policies as may be amended
+                from time to time. Copies are available on the MIT website manukau.ac.nz. In particular,
+                you should note the MIT Student Regulations and the regulations applying to your programme
+                of study.
+            </li><br>
+            <li>
+                I have read and accept the Privacy and Policy statements printed on this form.
+            </li><br>
+            <li>
+                I acknowledge that all MIT courses and programmes will proceed subject to enrolment
+                numbers and MIT has the right to cancel or postpone an offering of a course or programme
+                prior to its commencement if there are insufficient enrolments.
+            </li><br>
+            <li>
+                I undertake to pay all fees and charges relating to my enrolment and to meet all
+                collection charges associated with debt recovery. Fees must be paid in full, or a signed
+                agreement made for their payment in instalments, by the start of the course. MIT may take
+                such steps as necessary to collect outstanding fees. Refunds and withdrawals will be
+                processed in accordance with the MIT International Policy.
+            </li><br>
+            <li>
+                I acknowledge that MIT may refuse to permit or may cancel my enrolment, on any of
+                the grounds set out in the Student Regulations. This includes, but is not limited to,
+                where I am found not to be of good character (including, but not limited to: having a
+                bad debt history; a criminal conviction; or a history of breaching MIT regulations or
+                policies); have been guilty of misconduct or a breach of discipline; am enrolled for
+                fulltime instruction in another institution or secondary school; or have made
+                insufficient progress in my studies. I further acknowledge that MIT may withdraw my
+                enrolment from a course where I have not attended in the first three weeks.
+            </li><br>
+            <li>
+                I understand that is it my responsibility to ensure that my visa is current at all
+                times and that MIT has the right to cancel my enrolment and retain the tuition fee if my
+                visa has expired while studying at MIT.
+            </li><br>
+            <li>
+                I understand that MIT may need to validate the information provided on this form
+                and attachments.
+            </li><br>
+            <li>
+                I authorise MIT to collect information for this purpose from any agency holding
+                the source of this information.
+            </li><br>
+        </ul>
+
+            <div class="fields-grid">
+            <!------------------ Declaration Checkbox ---------------->
+            <mat-checkbox 
+            formControlName="read_enrolment_declaration"
+            required>
+            By checking this box I declare to have read this declaration statement.  
+            </mat-checkbox><br /><br />
+            </div>
+        </div>
+        <div>
+            <button mat-button matStepperPrevious>Back</button>
+            <button mat-raised-button color="primary" matStepperNext>Next</button>
+        </div>
+        </mat-step>
+  
+        <!------------------ Done Step ---------------->
+        <mat-step aria-label="Form submited tab">
+            <ng-template matStepLabel>Done</ng-template>
+            <div>
+                <mat-label>
+                    NOTE: If you completing this form on behalf of the student, you must have neccessary authorisation through legal guardianship or power of attorney.
+                </mat-label>
+                <br /><br />
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-raised-button color="warn" 
+                [disabled]="!firstFormGroup.valid || 
+                !secondFormGroup.valid ||
+                !thirdFormGroup.valid ||
+                !fourthFormGroup.valid ||
+                !fifthFormGroup.valid ||
+                !sixFormGroup.valid " 
+                (click)="onSubmitForm()" 
+                    matStepperNext>
+                    Subtmit this form now
+                </button>
+            </div>
+        </mat-step>
+    
+    </mat-vertical-stepper>

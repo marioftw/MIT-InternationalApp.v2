@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import firebase from 'firebase/app';
 import Timestamp = firebase.firestore.Timestamp;
-import { Important, Users } from '../../core/models/users';
-import { UsersService } from 'src/app/core/services/users.service';
+import { Important, Users } from '../../models/users';
+import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
 import { catchError, concatMap, last, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -33,6 +33,7 @@ export class RegistrationFormComponent implements OnInit {
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
   fifthFormGroup: FormGroup;
+  sixFormGroup: FormGroup;
 
   constructor(
     // MAL: to create/inject a form model
@@ -153,10 +154,13 @@ export class RegistrationFormComponent implements OnInit {
       programme_start_date: [null, Validators.required],
     });
     this.fourthFormGroup = this._formBuilder.group({
-      read_privacy_statement: [false, Validators.required],
+      read_registration_privacy: [false, Validators.required],
     });
     this.fifthFormGroup = this._formBuilder.group({
-      read_declaration_statement: [false, Validators.required],
+      read_registration_declaration: [false, Validators.required],
+    });
+    this.sixFormGroup = this._formBuilder.group({
+      read_registration_rightToInform: [false, Validators.required],
     });
   }
 
@@ -224,7 +228,8 @@ export class RegistrationFormComponent implements OnInit {
       ...this.secondFormGroup.value,
       ...this.thirdFormGroup.value,
       ...this.fourthFormGroup.value,
-      ...this.fifthFormGroup.value} as Users;
+      ...this.fifthFormGroup.value,
+      ...this.sixFormGroup.value} as Users;
     const newImportant = {
       ...this.firstFormGroup.value} as Important;
     newStudent.createdOn = Timestamp.fromDate(this.dateToday);
@@ -239,7 +244,7 @@ export class RegistrationFormComponent implements OnInit {
     .pipe(
       tap(student => {
         alert("Form submited successfully!");
-        this.router.navigateByUrl("/dashboard");
+        this.router.navigateByUrl("/student-dashboard");
       }),
       catchError(err => {
         alert("Could not submit form at this time. Check your internet connection or try later.");

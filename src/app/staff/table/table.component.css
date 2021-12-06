@@ -1,0 +1,55 @@
+#search-table {
+  margin: 40px;
+}
+
+.mat-elevation-z8 {
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+
+.id-column {
+  min-width: 110px;
+}
+
+.name-column {
+  min-width: 110px;
+}
+
+.prefered-name-column {
+  min-width: 180px;
+}
+
+.email-column {
+  min-width: 200px;
+}
+
+.phone-column {
+  min-width: 110px;
+}
+
+.dateOfBirth-column {
+  min-width: 110px;
+}
+
+.actions-column {
+  min-width: 80px;
+  max-width: 80px;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 50%;
+  margin: 30px 30px 0 30px;
+}

@@ -13,6 +13,7 @@ export interface Users {
     dateOfBirth: Timestamp;
     createdOn: Timestamp;
     completed_registration_form: boolean;
+    completed_enrolment_form: boolean;
 }
 
 export interface Prefered {
@@ -89,4 +90,13 @@ export interface AcademicDetails {
     first_language: string;
     programme_name: string;
     programme_start_date: Timestamp;
+}
+
+export interface ReadStatements {
+    read_registration_privacy: boolean;
+    read_registration_declaration: boolean;
+    read_registration_rightToInform: boolean;
+    read_enrolment_transfers: boolean;
+    read_enrolment_privacy: boolean;
+    read_enrolment_declaration: boolean;
 }

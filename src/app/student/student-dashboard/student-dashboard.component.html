@@ -1,37 +1,46 @@
 <div id="dashboard">
-    <h1 class="mat-h1">Dashboard</h1>
-    <mat-card class="mat-elevation-z5">
-      <mat-card-header>
-        <mat-card-title>
-          Forms to complete:
-        </mat-card-title>
-      </mat-card-header>
-      <div class="card-content-div" >
-        <div class="forms">
-            <a mat-list-item routerLink="registration-form">
-                <button mat-icon-button>
-                  <mat-icon>summarize</mat-icon>
-                </button>
-                Registration Form
-            </a>
-            
+  <h1 class="mat-h1">Dashboard</h1>
+  <mat-card class="mat-elevation-z5">
+    <mat-card-header>
+      <mat-card-title>
+        Forms to complete:
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-stepper>
+      <mat-step completed="true">
+        <ng-template matStepLabel>Registration Form</ng-template>
+        <a mat-list-item href="/registration-form">
+          <div class="ripple-container mat-elevation-z2"
+            matRipple>
+            Click here to go the form
+          </div><br>
+        </a>
+        <div>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
-        <div class="forms">
-            <a mat-list-item routerLink="registration-form">
-                <button mat-icon-button>
-                  <mat-icon>summarize</mat-icon>
-                </button>
-                Enrolment Form
-            </a>
+      </mat-step>
+
+      <mat-step completed="true">
+        <ng-template matStepLabel>Enrolment Form</ng-template>
+        <a mat-list-item href="/enrolment-form">
+          <div class="ripple-container mat-elevation-z2"
+            matRipple>
+            Click here to go the form
+          </div><br>
+        </a>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" matStepperNext>Next</button>
         </div>
-        <div class="forms">
-            <a mat-list-item routerLink="registration-form">
-                <button mat-icon-button>
-                  <mat-icon>summarize</mat-icon>
-                </button>
-                International Student Declaration
-            </a>
-        </div>
-      </div>
-    </mat-card>
-  </div>
+      </mat-step>
+
+      <mat-step completed="true">
+        <ng-template matStepLabel>Done</ng-template>
+        <p>You are now done. All forms are submitted</p>
+      </mat-step>
+    </mat-stepper>
+  
+
+  </mat-card>
+</div>

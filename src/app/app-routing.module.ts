@@ -6,12 +6,13 @@ import {LoginComponent} from './login/login.component';
 import {AngularFireAuthGuard, hasCustomClaim, redirectUnauthorizedTo} from '@angular/fire/auth-guard';
 import {CreateUserComponent} from './admin/create-user/create-user.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { TableComponent } from './shared/table/table.component';
+import { TableComponent } from './staff/table/table.component';
 import { DashboardComponent } from './staff/dashboard/dashboard.component';
-import { CardsGridComponent } from './shared/cards-grid/cards-grid.component';
+import { CardsGridComponent } from './staff/cards-grid/cards-grid.component';
 import { RegistrationFormComponent } from './student/registration-form/registration-form.component';
 import { SitePoliciesComponent } from './shared/site-policies/site-policies.component';
 import { StudentDashboardComponent } from './student/student-dashboard/student-dashboard.component';
+import { EnrolmentFormComponent } from './student/enrolment-form/enrolment-form.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,8 @@ const routes: Routes = [
 
   // Student
   { path: 'student-dashboard', component: StudentDashboardComponent},  
-  { path: 'registration-form', component: RegistrationFormComponent}
+  { path: 'registration-form', component: RegistrationFormComponent},
+  { path: 'enrolment-form', component: EnrolmentFormComponent}
 ];
 
 @NgModule({
