@@ -5,6 +5,8 @@ import {concatMap, map, tap} from "rxjs/operators";
 import { convertSnaps } from "./db-utils";
 import { Users } from "../models/users";
 import { stringify } from "querystring";
+import { UserRoles } from "../models/user-roles";
+import { AngularFireAuth } from "@angular/fire/auth";
 
 @Injectable({
     providedIn: "root"
@@ -12,10 +14,16 @@ import { stringify } from "querystring";
 
 export class UsersService {
 
+  role$: Observable<UserRoles>
+
   constructor(
     // MAL: inject Angular Firestore service to be able to querry the database
-    private db: AngularFirestore) {
-
+    private db: AngularFirestore,
+    private afAuth: AngularFireAuth) {
+      this.role$ = this.afAuth.idTokenResult
+      .pipe(
+        map(token => <any>token?.claims ?? {admin:false})
+      )
   }
 
   // MAL: used in the Dashboard to display recently joined users (new students)

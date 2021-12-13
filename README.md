@@ -1,5 +1,5 @@
 
-PLEASE NOTE: This is of a student project assessment
+PLEASE NOTE: This is part of a student project assessment
 
 # Manukau Institute of Technology International Application
 

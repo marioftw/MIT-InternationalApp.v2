@@ -1,5 +1,5 @@
 // MAL: reference to firebase admin package
-const { auth } = require('firebase-admin');
+//const { auth } = require('firebase-admin');
 const admin = require ('firebase-admin');
 
 // MAL: taking two arguments from console: 1. full path to service account 2. unique user identifier to set admin account

@@ -57,12 +57,6 @@
         New User
       </a>
 
-      <!--  Edit User  -->
-      <a mat-list-item routerLink="edit-student" *ngIf="user.isLoggedIn$ | async" (click)="drawer.toggle()">
-        <mat-icon>edit</mat-icon>
-        Edit Student
-      </a>
-
       <!--                        STUDENTS                     -->
       <!--------------------------------------------------------->
       <mat-divider *ngIf="user.isLoggedIn$ | async"></mat-divider>
